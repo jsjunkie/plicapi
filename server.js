@@ -1,5 +1,7 @@
 var express = require('express');
 var cors = require('cors');
+var MongoClient = require('mongodb');
+var ObjectID = MongoClient.ObjectID; 
 
 var app = express();
 var corsOptions = {
@@ -14,6 +16,18 @@ app.get('/', function(req, res) {
 	res.send('This is plic api');
 });
 
-app.listen(process.env.PORT, function() {
-	console.log('Listening on port :'+process.env.PORT);
+var db;
+
+MongoClient.connect(process.env.MONGO_URI, function(err, database) {
+	if (err){
+	  console.log(err);
+	  process.exit(1);
+	}
+
+	db = database;
+	console.log('Connected to database');
+	
+	app.listen(process.env.PORT, function() {
+   	     console.log('Listening on port :'+process.env.PORT);
+	});
 });
