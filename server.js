@@ -1,6 +1,13 @@
 var express = require('express');
+var cors = require('cors');
 
 var app = express();
+var corsOptions = {
+	origin: process.env.ALLOW_ORI,
+	optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 
 app.get('/', function(req, res) {
 	console.log('call to /');
