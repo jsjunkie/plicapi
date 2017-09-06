@@ -1,0 +1,12 @@
+{
+  "name": "plicapi",
+  "version": "1.0.0",
+  "description": "API for product listing creator",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "BigLambda.co",
+  "license": "ISC"
+}
