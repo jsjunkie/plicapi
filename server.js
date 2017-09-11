@@ -22,7 +22,7 @@ app.get('/', function(req, res) {
 app.post('/upload', upload.single('file'), function(req, res, next) {
 	var file = req.file;
 	uploadFile.upload(file.filename, db, function(){
-		res.send("File has bee uploaded");
+		res.send("File has been uploaded");
 	}, function(){
 		res.send("There was some error");
 	});
