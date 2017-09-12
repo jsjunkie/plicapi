@@ -11,6 +11,20 @@ var addProduct = function(entry, db, callback, errorCallback){
 	});
 }
 
+var getProducts = function(db, callback, errorCallback){
+	var collection = db.collection('MainList');
+
+	collection.find({}).toArray(function(err, data){
+		if (err){
+			errorCallback(err);
+			return;
+		}
+
+		callback(data);
+	});
+}
+
 module.exports = {
-	addProduct: addProduct
+	addProduct: addProduct,
+	getProducts: getProducts
 }
