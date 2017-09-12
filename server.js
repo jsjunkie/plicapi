@@ -39,6 +39,33 @@ app.get('/mainlist', function(req, res){
 	})
 });
 
+app.get('/addtoamazon/:id', function(req, res, next){
+	debugger;
+	var id = ObjectID(req.params.id);
+	database.addToAmazon(db, id, function(result){
+		res.send("Product add to Amazon");
+	}, function(err){
+		console.log(err);
+	});
+});
+
+app.get('/amazonlist', function(req, res) {
+	database.getAmazonProducts(db, function(data){
+		res.send(JSON.stringify(data));
+	}, function(err){
+		console.log(err);
+	})
+});
+
+app.get('/removefromamazon/:id', function(req, res) {
+	var id = ObjectID(req.params.id);
+	database.removeFromAmazon(db, id, function(result){
+		res.send("Product removed from Amazon");
+	}, function(err){
+		console.log(err);
+	});
+})
+
 var db;
 
 MongoClient.connect(process.env.MONGO_URI, function(err, database) {
